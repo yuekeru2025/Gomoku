@@ -1,0 +1,27 @@
+# Visual Studio 2022
+.vs/
+*.vcxproj.user
+*.vcxproj.filters
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Bb]uild/
+[Oo]bj/
+
+# Visual Studio 文件
+*.opendb
+*.db
+*.db-shm
+*.db-wal
+*.vsidx
+*.VC.db
+
+# 其他临时文件
+*.tmp
+*.temp
