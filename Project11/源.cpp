@@ -396,7 +396,6 @@ public:
 	}
 	//输出获胜者信息
 	
-	
 	void putWinner(const char* winnerInfo)
 	{
 		int width = 400;
@@ -411,26 +410,10 @@ public:
 		setcolor(BLACK);
 		rectprintf(x, y, w, h,winnerInfo);
 		
-		
+		settarget(nullptr);
 		int winX = (WINDOW_WIDTH - width) / 2;
 		int winY = (WINDOW_HEIGHT - height) / 2;
 		putimage_withalpha(NULL, m_endImage, winX, winY);
-
-		return;
-	}
-	//判断棋盘是否已满
-	void ifboardFull()
-	{
-		for (int i = 0; i < BOARD_SIZE; i++)
-		{
-			for (int j = 0; j < BOARD_SIZE; j++)
-			{
-				if (m_board[i][j] == EMPTY)
-				{
-
-				}
-			}
-		}
 		return;
 	}
 	
