@@ -146,7 +146,9 @@ public:
 		{
 			//更新棋盘的状态
 			m_board[bX][bY] = piece;
-			
+			//更新最后落子
+			m_lastRow = bX;
+			m_lastCol = bY;
 			drawPiece(bX, bY, piece);
 			pdWinner(bX, bY, piece);
 		}
@@ -469,3 +471,13 @@ int main()
 	}
 	closegraph();
 }
+
+
+/*
+10_22:
+反思了一下我自己打的代码与被给代码之前的区别与优劣。
+1.被给代码在使用一个函数的时候，总是先去判断函数是否调用成功，才进行别的。
+2.被给代码总是会注意到很多。处理可能的意外情况。比如MakeMove()这个函数中在placePiece()完成之后，会判断棋盘是否满了。mouseToBoard()这个函数
+不仅仅是把坐标转换，而且处理意外情况，比如用户点击没有点击的棋盘内部，点击到格子中心，没有点击到对应位置等。
+
+*/
