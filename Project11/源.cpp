@@ -420,9 +420,11 @@ public:
 	}
 	
 	
+	
 	GameState getGameState() const { return gameState; }
 	PieceType getcurrentPlayer() const { return m_currentPlayer; }
-	//我的更改去了哪里？
+
+	
 
 private:
 	int m_lastRow{};
