@@ -356,8 +356,8 @@ public:
 			int rowC = direction[a][0];
 			int colC = direction[a][1];
 			int count = 1;
-			int r = 0;
-			int c = 0;
+			int r = bX;
+			int c = bY;
 			//正方向统计
 			while (r < BOARD_SIZE && c < BOARD_SIZE)
 			{
@@ -373,6 +373,8 @@ public:
 				}
 			}
 			//反向统计
+			r = bX;
+			c = bY;
 			while (r >= 0 && c >= 0)
 			{
 				r -= rowC;
