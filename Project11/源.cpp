@@ -149,7 +149,7 @@ public:
 			//更新最后落子
 			m_lastRow = bX;
 			m_lastCol = bY;
-			drawPiece(bX, bY, piece);
+			//drawPiece(bX, bY, piece);
 			pdWinner(bX, bY, piece);
 		}
 		//不断切换当前玩家
@@ -164,23 +164,32 @@ public:
 		return;
 	}
 	//画棋子
-	void drawPiece(int bX, int bY, PieceType piece)
+	void drawPiece()
 	{
 		ege_enable_aa(true);
-		int x = bX * CELL_SIZE + OFFSET_X;
-		int y = bY * CELL_SIZE + OFFSET_Y;
-		setlinecolor(EGERGB(0xA9, 0xA9, 0xA9));
-		//PieceType piece = getcurrentPlayer();我想要知道类里是如何不断获取当前玩家的。
-		int r = CELL_SIZE / 2 - 2;//-2是为了避免过度拥挤
-		if (piece == BLACK_PIECE)
+		for (int i = 0; i < BOARD_SIZE; i++)
 		{
-			setfillcolor(BLACK);
-			fillcircle(x, y, r);
-		}
-		else if (piece == WHITE_PIECE)
-		{
-			setfillcolor(WHITE);
-			fillcircle(x, y, r);
+			for (int j = 0; j < BOARD_SIZE; j++)
+			{
+				if (m_board[i][j] != EMPTY)
+				{
+					int x = i * CELL_SIZE + OFFSET_X;
+					int y = j * CELL_SIZE + OFFSET_Y;
+					int r = CELL_SIZE / 2 - 2;
+					if (m_board[i][j] == BLACK_PIECE)
+					{
+						setcolor(EGERGB(96, 96, 96));
+						setfillcolor(EGERGB(0, 0, 0));
+						fillcircle(x, y, r);
+					}
+					if (m_board[i][j] == WHITE_PIECE)
+					{
+						setcolor(EGERGB(192, 192, 192));
+						setfillcolor(EGERGB(255, 255, 255));
+						fillcircle(x, y, r);
+					}
+				}
+			}
 		}
 		//判断是否为最后一颗落子,是就得画小红十字//不仅仅是m_lastRow与m_lastCol是i,j，还得判断是否赢了最后一颗棋子。
 		for (int i = 0; i < BOARD_SIZE; i++)
@@ -399,7 +408,6 @@ public:
 		return;
 	}
 	//输出获胜者信息
-	
 	void putWinner(const char* winnerInfo)
 	{
 		int width = 400;
@@ -413,7 +421,7 @@ public:
 		fillrect(0, 0, width, height);
 		rectangle(0, 0, width, height);
 		//输出字
-		setfont(30, 0, "宋体");
+		setfont(60, 0, "宋体");
 		setcolor(BLACK);
 		int textWidth = textwidth(winnerInfo);
 		int textHeight = textheight(winnerInfo);
