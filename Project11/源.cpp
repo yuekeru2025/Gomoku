@@ -406,27 +406,40 @@ public:
 		int height = 300;
 		m_endImage = newimage(width, height);
 		settarget(m_endImage);
+		//绘制半透明背景
+		setfillcolor(0xffffffff);
+		setfillstyle(SOLID_FILL, 0xffffffff);
+		// 绘制背景矩形
+		setlinewidth(3);
+		setbkmode(TRANSPARENT);
 		int x = (WINDOW_WIDTH - width) / 2;
 		int y = (WINDOW_HEIGHT - height) / 2;
 		int w = x + width;
 		int h = y + height;
 		//输出字
 		setcolor(BLACK);
-		rectprintf(x, y, w, h,winnerInfo);
-		
+		setbkmode(TRANSPARENT);
+		fillrect(0, 0, width, height);
+		rectangle(0, 0, width, height); // 计算文本居中位置
+		int textWidth = textwidth(winnerInfo);
+		int textHeight = textheight(winnerInfo);
+		int textX = (width - textWidth) / 2;
+		int textY = (height - textHeight) / 2;
+		outtextxy(textX, textY, winnerInfo);
 		settarget(nullptr);
 		int winX = (WINDOW_WIDTH - width) / 2;
 		int winY = (WINDOW_HEIGHT - height) / 2;
+		ege_setalpha(200, m_endImage);
 		putimage_withalpha(NULL, m_endImage, winX, winY);
 		return;
 	}
 	
-	
-	
+
+
 	GameState getGameState() const { return gameState; }
 	PieceType getcurrentPlayer() const { return m_currentPlayer; }
 
-	
+
 
 private:
 	int m_lastRow{};
@@ -448,12 +461,12 @@ int main()
 {
 	//初始化窗口
 	initgraph(WINDOW_WIDTH, WINDOW_HEIGHT);
-	
+
 	Gomoku game;
 	game.drawBOARD();
-	while(true)
+	while (true)
 	{
-		
+
 		while (mousemsg())
 		{
 			mouse_msg msg = getmouse();
