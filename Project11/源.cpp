@@ -406,25 +406,20 @@ public:
 		int height = 300;
 		m_endImage = newimage(width, height);
 		settarget(m_endImage);
-		//绘制半透明背景
-		setfillcolor(0xffffffff);
-		setfillstyle(SOLID_FILL, 0xffffffff);
 		// 绘制背景矩形
-		setlinewidth(3);
-		setbkmode(TRANSPARENT);
-		int x = (WINDOW_WIDTH - width) / 2;
-		int y = (WINDOW_HEIGHT - height) / 2;
-		int w = x + width;
-		int h = y + height;
-		//输出字
 		setcolor(BLACK);
-		setbkmode(TRANSPARENT);
+		setfillcolor(WHITE);
+		setlinewidth(3);
 		fillrect(0, 0, width, height);
-		rectangle(0, 0, width, height); // 计算文本居中位置
+		rectangle(0, 0, width, height);
+		//输出字
+		setfont(30, 0, "宋体");
+		setcolor(BLACK);
 		int textWidth = textwidth(winnerInfo);
 		int textHeight = textheight(winnerInfo);
 		int textX = (width - textWidth) / 2;
 		int textY = (height - textHeight) / 2;
+		setbkmode(TRANSPARENT);
 		outtextxy(textX, textY, winnerInfo);
 		settarget(nullptr);
 		int winX = (WINDOW_WIDTH - width) / 2;
