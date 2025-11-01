@@ -173,8 +173,8 @@ public:
 			{
 				if (m_board[i][j] != EMPTY)
 				{
-					int x = i * CELL_SIZE + OFFSET_X;
-					int y = j * CELL_SIZE + OFFSET_Y;
+					int x = j * CELL_SIZE + OFFSET_X;
+					int y = i * CELL_SIZE + OFFSET_Y;
 					int r = CELL_SIZE / 2 - 2;
 					if (m_board[i][j] == BLACK_PIECE)
 					{
@@ -467,9 +467,10 @@ int main()
 
 	Gomoku game;
 	game.drawBOARD();
+	
 	while (true)
 	{
-
+		game.drawPiece();
 		while (mousemsg())
 		{
 			mouse_msg msg = getmouse();
@@ -477,6 +478,7 @@ int main()
 			{
 				printf("鼠标点击位置: (%d, %d)\n", msg.x, msg.y);  // 调试输出
 				game.handleClickMouse(msg.x, msg.y);
+				
 			}
 		}
 		if (kbhit())
